@@ -1,0 +1,11 @@
+﻿@model PhoneBook.Models.Structure
+@{
+	ViewData["Title"] = "Удаление структуры";
+}
+<h3 class="text-danger mb-3">Вы уверены что хотите удалить структуру и включенных в него абонентов?</h3>
+<form method="post" role="form"> 
+	<input type="hidden" name="Id" value="@Model.Id"/>
+	<input type="hidden" name="Position" value="@Model.Title"/>
+	<button class="btn-danger btn">Удалить</button>
+</form>
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary mt-3">Назад</a>

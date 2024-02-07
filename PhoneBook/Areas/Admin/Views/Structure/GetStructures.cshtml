@@ -1,0 +1,21 @@
+﻿@model IEnumerable<PhoneBook.Models.Structure>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th scope="col">Должность</th>
+			<th scope="col">Редактировать</th>
+			<th scope="col">Удалить</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var structure in Model)
+		{
+			<tr>
+				<td>@structure.Title</td>
+				<td><a asp-action="Edit" asp-route-id="@structure.Id" class="btn btn-primary">Редактировать</a></td>
+				<td><a asp-action="Delete" asp-route-id="@structure.Id" class="btn btn-danger">Удалить</a></td>
+			</tr>
+		}
+	</tbody>
+</table>

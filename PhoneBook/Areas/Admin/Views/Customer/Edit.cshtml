@@ -1,0 +1,47 @@
+﻿@model PhoneBook.Models.Customer
+@{
+	string title = "Редактирование абонента";
+	ViewData["Title"] = title;
+}
+<div class="text-center">
+	<h3 class="mb-4">@title</h3>
+	<form method="post" class="form-horizontal" role="form">
+		<input type="hidden" name="Id" value="@Model.Id" />
+		<div class="form-group mb-2">
+			<label for="Position" class="col-md-7 control-label">Должность:</label>
+			<div class="col-md-7 mx-auto">
+				<input type="text" name="Position" value="@Model.Position" class="form-control" required />
+			</div>
+		</div>
+		<div class="form-group mb-2">
+			<label for="FIO" class="col-md-7 control-label">ФИО:</label>
+			<div class="col-md-7 mx-auto">
+				<input type="text" name="FIO" value="@Model.FIO" class="form-control" required />
+			</div>
+		</div>
+		<div class="form-group mb-2">
+			<label for="ATS" class="col-md-7 control-label">Автоматическая Телефонная Станция (АТС):</label>
+			<div class="col-md-7 mx-auto">
+				<input type="text" name="ATS" value="@Model.ATS" class="form-control" required />
+			</div>
+		</div>
+		<div class="form-group mb-2">
+			<label for="CTS" class="col-md-7 control-label">Городская Телефонная Станция (ГТС):</label>
+			<div class="col-md-7 mx-auto">
+				<input type="text" name="CTS" value="@Model.CTS" class="form-control" required />
+			</div>
+		</div>
+		<div class="form-group mb-2">
+			<label for="StructureId" class="col-md-2 control-label">Структура:</label>
+			<div class="col-md-7 mx-auto">
+				<select name="StructureId" class="form-select" asp-items="ViewBag.Structures">
+					<option selected value="@Model.StructureId">@Model.Structure.Title</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Отправить" />
+		</div>
+	</form>
+	<a asp-controller="Home" asp-action="Index" class="btn btn-secondary mt-3">Назад</a>
+</div>

@@ -1,0 +1,57 @@
+﻿@using PhoneBook.ViewModels
+@model AdminViewModel
+@{
+	ViewData["Title"] = "Телефонный справочник";
+	ViewData["Auth"] = @User.Identity.Name;
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+	<h2 class="title">Телефонный справочник</h2>
+	<div class="filter d-flex">
+		<div class="col-md-6">
+			<form method="post" role="form">
+				<div class="form-group">
+					<label for="Text" class="control-label mb-2">Данные для поиска</label>
+					<div class="filter-search">
+						<input type="text" name="Text" class="form-control filter-search__input" required placeholder="Введите ФИО, должность, АТС или ГТС" />
+						<button type="button" id='admin-search' class="btn btn-primary filter-search__btn h-100">
+							<svg class="search-icon" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+								<path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+							</svg>
+							&nbsp; Поиск
+						</button>
+					</div>
+				</div>
+			</form>
+			<div>
+				<a asp-area="Admin" asp-controller="Customer" asp-action="Create" class="text-info text-decoration-none me-2">Создать абонента</a>
+				<a asp-area="Admin" asp-controller="Structure" asp-action="Create" class="text-info text-decoration-none">Создать структуру</a>
+				<span id="structure" class="text-info text-decoration-none">Вывести список структур</span>
+			</div>
+		</div>
+		<div class="filter-or" style="margin-top: -10px;">или</div>
+		<div id='admin-select' class="filter-select w-100">
+			<label for="Id" class="col-md-2 control-label mb-2">Структура</label>
+			<select name="Id">
+				<option selected disabled>Выберите структуру</option>
+				@foreach (var structure in Model.Structures)
+				{
+					<option value="@structure.Id">@structure.Title</option>
+				}
+			</select>
+			<div class="select-dropdown" style="top: 32px;"></div>
+		</div>
+	</div>
+	@if (User.IsInRole("admin"))
+	{
+		<a asp-controller="Users" asp-action="Index">Просмотреть пользователей</a>
+	}
+	<form method="post" asp-area="Admin" asp-controller="Account" asp-action="Logout">
+		<input type="submit" class="btn-outline-primary btn mb-3" value="Выйти из админки" />
+	</form>
+	
+	<div class="ajax-content">
+		<div id="results"></div>
+	</div>
+}

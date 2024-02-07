@@ -1,0 +1,28 @@
+﻿@model IEnumerable<PhoneBook.Models.User>
+
+<h2>Список пользователей</h2>
+@functions {
+    
+}
+<table class="table">
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Email</td>
+            <td>@user.FIO</td>
+            <td>
+                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-userid="@user.Id">Права доступа</a>
+            </td>
+        </tr>
+    }
+</table>
+
+
+<br />
+<div>
+    <a asp-action="Index" asp-controller="Roles">Список ролей</a>
+</div>
+<br />
+<div>
+    <a asp-action="Index" class="btn btn-outline-secondary">Назад</a>
+</div>

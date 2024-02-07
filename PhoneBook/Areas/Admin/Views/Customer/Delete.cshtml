@@ -1,0 +1,14 @@
+﻿@model PhoneBook.Models.Customer
+@{
+	ViewData["Title"] = "Удаление абонента";
+}
+<h3 class="text-danger mb-3">Вы уверены что хотите удалить абонента?</h3>
+<form method="post" role="form"> 
+	<input type="hidden" name="Id" value="@Model.Id"/>
+	<input type="hidden" name="Position" value="@Model.Position"/>
+	<input type="hidden" name="FIO" value="@Model.FIO"/>
+	<input type="hidden" name="ATS" value="@Model.ATS"/>	
+	<input type="hidden" name="СTS" value="@Model.CTS"/>
+	<button class="btn-danger btn">Удалить</button>
+</form>
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary mt-3">Назад</a>

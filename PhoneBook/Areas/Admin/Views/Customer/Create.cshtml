@@ -1,0 +1,46 @@
+﻿@{
+	string title = "Создание абонента";
+	ViewData["Title"] = title;
+}
+<div class="text-center">
+	<h3 class="mb-4">@title</h3>
+	<form method="post" class="form-horizontal" role="form">
+		<input type="hidden" name="Id" />
+		<div class="form-group mb-2">
+			<label for="Position" class="col-md-7 control-label">Должность:</label>
+			<div class="col-md-7 mx-auto">
+				<input type="text" name="Position" class="form-control" required />
+			</div>
+		</div>
+		<div class="form-group mb-2">
+			<label for="FIO" class="col-md-7 control-label">ФИО:</label>
+			<div class="col-md-7 mx-auto">
+				<input type="text" name="FIO" class="form-control" required />
+			</div>
+		</div>
+		<div class="form-group mb-2">
+			<label for="ATS" class="col-md-7 control-label">Автоматическая Телефонная Станция (АТС):</label>
+			<div class="col-md-7 mx-auto">
+				<input type="text" name="ATS" class="form-control" required />
+			</div>
+		</div>
+		<div class="form-group mb-2">
+			<label for="CTS" class="col-md-7 control-label">Городская Телефонная Станция (ГТС):</label>
+			<div class="col-md-7 mx-auto">
+				<input type="text" name="CTS" class="form-control" required />
+			</div>
+		</div>
+		<div class="form-group mb-2">
+			<label for="StructureId" class="col-md-2 control-label">Структура:</label>
+			<div class="col-md-7 mx-auto">
+				<select name="StructureId" class="form-select" asp-items="ViewBag.Structures">
+					<option selected value="@ViewBag.StructureId">@ViewBag.StructureTitle</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-primary" value="Отправить" />
+		</div>
+	</form>
+	<a asp-controller="Home" asp-action="Index" class="btn btn-secondary mt-3">Назад</a>
+</div>

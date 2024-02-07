@@ -1,0 +1,31 @@
+﻿@model IEnumerable<PhoneBook.Models.Customer>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th scope="col">Должность</th>
+			<th scope="col">ФИО</th>
+			<th scope="col">АТС</th>
+			<th scope="col">ГТС</th>
+			<th scope="col">Структура</th>
+			<th scope="col">Редактировать</th>
+			<th scope="col">Удалить</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var customer in Model)
+		{
+			<tr>
+				<td>@customer.Position</td>
+				<td class="fio">@customer.FIO</td>
+				<td>@customer.ATS</td>
+				<td>@customer.CTS</td>
+				<td>@customer.Structure.Title</td>
+				<td><a asp-action="Edit" asp-route-id="@customer.Id" class="btn btn-primary">Редактировать</a></td>
+				<td><a asp-action="Delete" asp-route-id="@customer.Id" class="btn btn-danger">Удалить</a></td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+
